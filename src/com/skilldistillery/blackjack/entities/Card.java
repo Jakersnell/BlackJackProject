@@ -6,6 +6,7 @@ public class Card {
 	private Rank rank;
 	private Suit suit;
 	private boolean isFaceDown;
+
 	
 	public Card(Rank rank, Suit suit) {
 		this.rank = rank;
@@ -19,6 +20,14 @@ public class Card {
 	
 	public void flipCard() {
 		isFaceDown = !isFaceDown;
+	}
+	
+	public boolean ifAceSetToLow() {
+		if (rank == Rank.ACE) {
+			rank.setValue(1);
+			return true;
+		}
+		return false;
 	}
 	
 	@Override
@@ -39,11 +48,16 @@ public class Card {
 	}
 
 	public int getValue() {
+		if (isFaceDown) return 0;
 		return rank.getValue();
 	}
 	
+	
 	@Override
 	public String toString() {
-		return rank.getSymbol() + suit.getSymbol();
+		if (isFaceDown) {
+			return "##hidden##";
+		}
+		return rank.getSymbol() + suit.getSymbol() + " value: " + getValue();
 	}
 }

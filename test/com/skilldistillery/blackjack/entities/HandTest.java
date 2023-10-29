@@ -1,5 +1,5 @@
 package com.skilldistillery.blackjack.entities;
 
-public enum Chip {
+public class HandTest {
 
 }

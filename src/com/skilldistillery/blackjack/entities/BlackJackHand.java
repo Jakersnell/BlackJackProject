@@ -7,16 +7,30 @@ public class BlackJackHand extends Hand {
 	}
 
 	@Override
-	public int getHandValue() {
+	public int getValue() {
 		return cards.stream().mapToInt(Card::getValue).sum();
+	}
+	
+	public void setFirstAceToLow() {
+		if (isBust()) {
+			for (Card card : cards) {
+				if (card.ifAceSetToLow()) {
+					return;
+				}
+			}
+		}
 	}
 
 	public boolean isBlackJack() {
-		return getHandValue() == 21;
+		return getValue() == 21;
 	}
 
 	public boolean isBust() {
-		return getHandValue() > 21;
+		return getValue() > 21;
+	}
+	
+	public boolean isUnder() {
+		return getValue() < 21;
 	}
 
 }

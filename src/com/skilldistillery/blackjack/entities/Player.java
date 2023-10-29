@@ -1,32 +1,49 @@
 package com.skilldistillery.blackjack.entities;
 
 public abstract class Player {
-	private BlackJackHand hand;
-	
+	protected Hand hand;
+	private String name;
+
 	public Player() {
-		this.hand = new BlackJackHand();
 	}
-	
-	public abstract boolean choosesHit();
-	
-	public BlackJackHand getHand() {
-		return hand;
+
+	public Player(String name) {
+		this();
+		this.name = name;
 	}
-	
-	public void callEvent(Event reason) {
-		clearHand();
+
+	public Player(Hand hand, String name) {
+		this(name);
+		this.hand = hand;
 	}
-	public int checkHand() {
-		return hand.getHandValue() - 21;
+
+	public int getHandValue() {
+		return hand.getValue();
 	}
-	
+
+	public String viewHand() {
+		return name + " " + hand.toString();
+	}
+
 	public void addCard(Card card) {
 		hand.addCard(card);
 	}
-	
-	
+
+	public void removeCardAt(int index) {
+		hand.removeCardAt(index);
+	}
+
 	public void clearHand() {
 		hand.clear();
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return "Player " + name + ":\n" + hand.toString();
+	}
+
 }
