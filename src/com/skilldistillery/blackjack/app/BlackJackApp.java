@@ -125,7 +125,7 @@ public class BlackJackApp implements CLIGame {
 			}
 		}
 		if (winner==null) return "nobody wins.";
-		return winner.getName() + " is the winner!";
+		return winner.getName() + " is the winner!\n" + winner.toString();
 	}
 
 	public String playerChooseHitOrStand(BlackJackPlayer player) {
